@@ -22,3 +22,6 @@ This Terraform script builds a Cisco ACI Fabricfrom from 0 to a ready to migrate
  - ...
  ## Additional configuration
  - SYSlog, SNMP,backup, AAA, upgrade groups 
+
+## Note
+The varialbles have dummy data as example
