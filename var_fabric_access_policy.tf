@@ -1,5 +1,23 @@
 
-variable "policies_cdp" {
+#VPC explicit protection group (switchXid must match nodeid)
+variable "vpc_exp_prot_grp" {
+  default = {
+    "grp1" = {
+      name = "L101-L102"
+      switch1id = "101"
+      switch2id = "102"
+      grp_id    =  "101"
+    },
+    "grp2" = {
+      name = "L103-L104"
+      switch1id = "103"
+      switch2id = "104"
+      grp_id    =  "103"    
+    },
+  }
+  
+}
+variable "cdp_pol" {
   default = {
     "CDP_ENA" = {
       name     = "CDP_Disable"
@@ -11,7 +29,7 @@ variable "policies_cdp" {
     },
   }
 }
-variable "policies_lldp" {
+variable "lldp_pol" {
   default = {
     "LLDP_ENA" = {
       name        = "LLDP_Enable"
@@ -25,7 +43,7 @@ variable "policies_lldp" {
     }
   }
 }
-variable "policies_mcp" {
+variable "mcp_pol" {
   default = {
     "MCP_DIS" = {
       name        = "MCP_Disable"
@@ -37,7 +55,7 @@ variable "policies_mcp" {
     },
   }
 }
-variable "policies_link_level" {
+variable "link_level_pol" {
   default = {
     "1G_AUTO" = {
       name        = "1Gig_Auto"
@@ -59,7 +77,7 @@ variable "policies_link_level" {
     },
   }
 }
-variable "policies_lacp" {
+variable "lacp_pol" {
   default = {
     "ACTIVE" = {
       name        = "LACP_Active"
@@ -78,29 +96,48 @@ variable "policies_lacp" {
 
 variable "vlan_pool" {
   default = {
-    "EntProd_StaticVLPool" = {
+    "StaticVLPool" = {
       name       = "EntProd_StaticVLPool"
       alloc_mode = "static"
       from       = "vlan-100"
       to         = "vlan-299"
       role       = "external"
+      domainname = "EntProd_PhysDom"
     },
-    "EntProd_DynVLPool" = {
+    "DynVLPool" = {
       name       = "EntProd_DynVLPool"
       alloc_mode = "dynamic"
       from       = "vlan-300"
       to         = "vlan-499"
       role       = "external"
     },
-    "EntProd_L3oVLPool" = {
+    "L3oVLPool" = {
       name       = "EntProd_L3oVLPool"
       alloc_mode = "static"
       from       = "vlan-90"
       to         = "vlan-99"
       role       = "external"
+      domainname = "EntProd_L3oDom"
     }
   }
 }
+# physical domain
+
+#aaep
+variable "aaep" {
+  default = {
+    "EntProd_AAEP" = {
+      name = "EntProd_AAEP"
+      desc = "EntProd AAEP desc"
+    },
+    "EntDev_AAEP" = {
+      name = "EntDev_AAEP"
+      desc = "EntDev AAEP desc"
+    }
+  }
+}
+
+
 ##need
 variable "admin_maintgroup" {
   default = {
@@ -123,7 +160,7 @@ variable "admin_maintgroup" {
   }
 }
 
-variable "policies_stp" {
+variable "stp_pol" {
   default = {
     "BPDU_filter" = {
       name = "BPDU_Filter_Enable"
@@ -163,3 +200,52 @@ variable "lip" {
 
   }
 }
+variable "leaf_int_sw_profile" {
+  default = {
+    "lsp101" = {
+      lprof_name = "Leaf101_LeafProf"
+      lsel_name = "Leaf101"
+      from = "101"
+      to = "101"
+      lip = "Leaf101_LeafProf"
+    },
+    "lsp102" = {
+      lprof_name = "Leaf102_LeafProf"
+      lsel_name = "Leaf102"
+      from = "102"
+      to = "102"
+      lip = "Leaf102_LeafProf"
+    },
+    "lsp103" = {
+      lprof_name = "Leaf103_LeafProf"
+      lsel_name = "Leaf103"
+      from = "103"
+      to = "103"
+      lip = "Leaf103_LeafProf"
+    },
+    "lsp104" = {
+      lprof_name = "Leaf104_LeafProf"
+      lsel_name = "Leaf104"
+      from = "104"
+      to = "104"
+      lip = "Leaf104_LeafProf"
+    },
+    "lsp101-102" = {
+      lprof_name = "Leaf101_102_LeafProf"
+      lsel_name = "Leaf101-102"
+      from = "101"
+      to = "102"
+      lip = "Leaf101_102_LeafProf"
+    },
+    "lsp103-104" = {
+      lprof_name = "Leaf103_104_LeafProf"
+      lsel_name = "Leaf103-104"
+      from = "103"
+      to = "104"
+      lip = "Leaf101_102_LeafProf"
+    },
+
+  }
+  
+}
+
