@@ -55,6 +55,7 @@ variable "mcp_pol" {
     },
   }
 }
+# link level policies
 variable "link_level_pol" {
   default = {
     "1G_AUTO" = {
@@ -64,19 +65,50 @@ variable "link_level_pol" {
       speed       = "1G"
     },
     "10G_AUTO" = {
-      name        = "10Gig-Auto"
+      name        = "10Gig_Auto"
       description = "10G Auto"
       auto_neg    = "on"
       speed       = "10G"
     },
+     "25G_AUTO" = {
+      name        = "25Gig_Auto"
+      description = "25G Auto"
+      auto_neg    = "on"
+      speed       = "25G"
+    },
     "AUTO_AUTO" = {
-      name        = "Inherit-Auto"
-      description = "Inherit Auto"
+      name        = "Inherit_Auto"
+      description = "Auto Auto"
       auto_neg    = "on"
       speed       = "inherit"
     },
   }
 }
+# storm control policy
+variable "storm_ctrl" {
+  default = {
+    "1G" = {
+      name  = "1G_SCrtl"
+      bcast = "0.1"
+      bcastb = "0.2"
+      mcast  = "40"
+      mcastb = "50"
+      uucast = "0.2"
+      uucastb = "0.4" 
+    },
+    "10G" = {
+      name  = "10G_SCrtl"
+      bcast = "0.05"
+      bcastb = "0.1"
+      mcast  = "40"
+      mcastb = "50"
+      uucast = "0.05"
+      uucastb = "0.1" 
+    }
+  }
+}
+
+
 variable "lacp_pol" {
   default = {
     "ACTIVE" = {
@@ -84,16 +116,16 @@ variable "lacp_pol" {
       mode        = "active"
     },
     "MACPIN" = {
-      name        = "LACP_MacPinL"
+      name        = "LACP_MacPin"
       mode        = "mac-pin"
     },
     "STATIC" = {
-      name        = "LACP_Off"
+      name        = "LACP_Stastic"
       mode        = "off"
     },
   }
 }
-
+# vlan pools and associated physical/l3/wmm domains
 variable "vlan_pool" {
   default = {
     "StaticVLPool" = {
@@ -110,6 +142,7 @@ variable "vlan_pool" {
       from       = "vlan-300"
       to         = "vlan-499"
       role       = "external"
+      domainname = "EntProd_WMMDom"
     },
     "L3oVLPool" = {
       name       = "EntProd_L3oVLPool"
@@ -121,7 +154,6 @@ variable "vlan_pool" {
     }
   }
 }
-# physical domain
 
 #aaep
 variable "aaep" {
@@ -177,29 +209,6 @@ variable "stp_pol" {
   }
 }
 
-variable "lip" {
-  default = {
-    "lip101" = {
-      name = "Leaf101_IntProf"
-    },
-    "lip102" = {
-      name = "Leaf102_IntProf"
-    },
-    "lip103" = {
-      name = "Leaf103_IntProf"
-    },
-    "lip104" = {
-      name = "Leaf104_IntProf"
-    },
-    "lip101-102" = {
-      name = "Leaf101_102_IntProf"
-    },
-    "lip103-104" = {
-      name = "Leaf103_104_IntProf"
-    },
-
-  }
-}
 variable "leaf_int_sw_profile" {
   default = {
     "lsp101" = {
@@ -207,42 +216,42 @@ variable "leaf_int_sw_profile" {
       lsel_name = "Leaf101"
       from = "101"
       to = "101"
-      lip = "Leaf101_LeafProf"
+      leaf_int_prof = "Leaf101_LeafProf"
     },
     "lsp102" = {
       lprof_name = "Leaf102_LeafProf"
       lsel_name = "Leaf102"
       from = "102"
       to = "102"
-      lip = "Leaf102_LeafProf"
+      leaf_int_prof = "Leaf102_LeafProf"
     },
     "lsp103" = {
       lprof_name = "Leaf103_LeafProf"
       lsel_name = "Leaf103"
       from = "103"
       to = "103"
-      lip = "Leaf103_LeafProf"
+      leaf_int_prof = "Leaf103_LeafProf"
     },
     "lsp104" = {
       lprof_name = "Leaf104_LeafProf"
       lsel_name = "Leaf104"
       from = "104"
       to = "104"
-      lip = "Leaf104_LeafProf"
+      leaf_int_prof = "Leaf104_LeafProf"
     },
     "lsp101-102" = {
       lprof_name = "Leaf101_102_LeafProf"
       lsel_name = "Leaf101-102"
       from = "101"
       to = "102"
-      lip = "Leaf101_102_LeafProf"
+      leaf_int_prof = "Leaf101_102_LeafProf"
     },
     "lsp103-104" = {
       lprof_name = "Leaf103_104_LeafProf"
       lsel_name = "Leaf103-104"
       from = "103"
       to = "104"
-      lip = "Leaf101_102_LeafProf"
+      leaf_int_prof = "Leaf103_104_LeafProf"
     },
 
   }

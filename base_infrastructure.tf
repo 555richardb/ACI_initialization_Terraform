@@ -12,7 +12,7 @@ resource "aci_fabric_node_member" "nodes" {
   for_each    = var.nodes
   name        = each.value.name
   serial      = each.value.serial
-  annotation  = ""
+  annotation  = "orchestrator:terraform"
   description = ""
   ext_pool_id = "0"
   fabric_id   = "1"
@@ -162,24 +162,30 @@ resource "aci_rest" "set_search_domain" {
 }
 
 resource "aci_coop_policy" "coop_pol" {
+    annotation  = "orchestrator:terraform"
     type        = "strict"
 }
 resource "aci_endpoint_ip_aging_profile" "ep_ip_aging" {
+  annotation  = "orchestrator:terraform"  
   admin_st = "enabled"
 }
 resource "aci_fabric_node_control" "fabric_node_ctrl" {
   name  = "default"
+  annotation  = "orchestrator:terraform"
   control = "Dom"
   feature_sel = "telemetry"
+  #values are "analytics", "netflow" and "telemetry".
 
 }
 resource "aci_endpoint_controls" "ep_ctrl" {
+  annotation = "orchestrator:terraform"
   hold_intvl = "1800"
   rogue_ep_detect_intvl = "60"
   rogue_ep_detect_mult = "4"
 
 } 
 resource "aci_port_tracking" "port_track" {
+    annotation = "orchestrator:terraform"
     admin_st           = "on"
     delay              = "120"
     include_apic_ports = "no"
@@ -189,6 +195,7 @@ resource "aci_port_tracking" "port_track" {
 
 resource "aci_fabric_wide_settings" "fabric_set" {
   name = "default"
+  annotation = "orchestrator:terraform"
   disable_ep_dampening = "yes"
   #domain_validation = "yes"
   enable_mo_streaming = "yes"
@@ -212,12 +219,14 @@ resource "aci_mcp_instance_policy" "mcp_pol" {
     tx_freq_msec     = "0"
 }
 resource "aci_endpoint_loop_protection" "loop_prot" {
+    annotation = "orchestrator:terraform"
     action            = ["port-disable"]
     admin_st          = "disabled"
     loop_detect_intvl = "60"
     loop_detect_mult  = "4"
 }
 resource "aci_qos_instance_policy" "qos_inst_pol" {
+    annotation = "orchestrator:terraform"
     etrap_age_timer       = "0" 
     etrap_bw_thresh       = "0"
     etrap_byte_ct         = "0"
