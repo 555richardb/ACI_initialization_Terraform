@@ -1,15 +1,15 @@
-# Login details
-#variable "APIC_username" {
-#  default = ""
-#}
-#
-#variable "APIC_password" {
-#  default = ""
-#}
-#
-#variable "APIC_url" {
-#  default = ""
-#}
+ Login details
+variable "APIC_username" {
+  default = ""
+}
+
+variable "APIC_password" {
+  default = ""
+}
+
+variable "APIC_url" {
+  default = ""
+}
 
 
 variable "nodes" {
