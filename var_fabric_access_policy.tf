@@ -3,19 +3,19 @@
 variable "vpc_exp_prot_grp" {
   default = {
     "grp1" = {
-      name = "L101-L102"
+      name      = "L101-L102"
       switch1id = "101"
       switch2id = "102"
-      grp_id    =  "101"
+      grp_id    = "101"
     },
     "grp2" = {
-      name = "L103-L104"
+      name      = "L103-L104"
       switch1id = "103"
       switch2id = "104"
-      grp_id    =  "103"    
+      grp_id    = "103"
     },
   }
-  
+
 }
 variable "cdp_pol" {
   default = {
@@ -46,12 +46,12 @@ variable "lldp_pol" {
 variable "mcp_pol" {
   default = {
     "MCP_DIS" = {
-      name        = "MCP_Disable"
-      admin_st    = "disabled"
+      name     = "MCP_Disable"
+      admin_st = "disabled"
     },
     "MCP_ENA" = {
-      name        = "MCP_Enable"
-      admin_st    = "enabled"
+      name     = "MCP_Enable"
+      admin_st = "enabled"
     },
   }
 }
@@ -70,7 +70,7 @@ variable "link_level_pol" {
       auto_neg    = "on"
       speed       = "10G"
     },
-     "25G_AUTO" = {
+    "25G_AUTO" = {
       name        = "25Gig_Auto"
       description = "25G Auto"
       auto_neg    = "on"
@@ -88,22 +88,22 @@ variable "link_level_pol" {
 variable "storm_ctrl" {
   default = {
     "1G" = {
-      name  = "1G_SCrtl"
-      bcast = "0.1"
-      bcastb = "0.2"
-      mcast  = "40"
-      mcastb = "50"
-      uucast = "0.2"
-      uucastb = "0.4" 
+      name    = "1G_SCrtl"
+      bcast   = "0.1"
+      bcastb  = "0.2"
+      mcast   = "40"
+      mcastb  = "50"
+      uucast  = "0.2"
+      uucastb = "0.4"
     },
     "10G" = {
-      name  = "10G_SCrtl"
-      bcast = "0.05"
-      bcastb = "0.1"
-      mcast  = "40"
-      mcastb = "50"
-      uucast = "0.05"
-      uucastb = "0.1" 
+      name    = "10G_SCrtl"
+      bcast   = "0.05"
+      bcastb  = "0.1"
+      mcast   = "40"
+      mcastb  = "50"
+      uucast  = "0.05"
+      uucastb = "0.1"
     }
   }
 }
@@ -112,16 +112,16 @@ variable "storm_ctrl" {
 variable "lacp_pol" {
   default = {
     "ACTIVE" = {
-      name        = "LACP_Active"
-      mode        = "active"
+      name = "LACP_Active"
+      mode = "active"
     },
     "MACPIN" = {
-      name        = "LACP_MacPin"
-      mode        = "mac-pin"
+      name = "LACP_MacPin"
+      mode = "mac-pin"
     },
     "STATIC" = {
-      name        = "LACP_Stastic"
-      mode        = "off"
+      name = "LACP_Stastic"
+      mode = "off"
     },
   }
 }
@@ -212,49 +212,49 @@ variable "stp_pol" {
 variable "leaf_int_sw_profile" {
   default = {
     "lsp101" = {
-      lprof_name = "Leaf101_LeafProf"
-      lsel_name = "Leaf101"
-      from = "101"
-      to = "101"
+      lprof_name    = "Leaf101_LeafProf"
+      lsel_name     = "Leaf101"
+      from          = "101"
+      to            = "101"
       leaf_int_prof = "Leaf101_LeafProf"
     },
     "lsp102" = {
-      lprof_name = "Leaf102_LeafProf"
-      lsel_name = "Leaf102"
-      from = "102"
-      to = "102"
+      lprof_name    = "Leaf102_LeafProf"
+      lsel_name     = "Leaf102"
+      from          = "102"
+      to            = "102"
       leaf_int_prof = "Leaf102_LeafProf"
     },
     "lsp103" = {
-      lprof_name = "Leaf103_LeafProf"
-      lsel_name = "Leaf103"
-      from = "103"
-      to = "103"
+      lprof_name    = "Leaf103_LeafProf"
+      lsel_name     = "Leaf103"
+      from          = "103"
+      to            = "103"
       leaf_int_prof = "Leaf103_LeafProf"
     },
     "lsp104" = {
-      lprof_name = "Leaf104_LeafProf"
-      lsel_name = "Leaf104"
-      from = "104"
-      to = "104"
+      lprof_name    = "Leaf104_LeafProf"
+      lsel_name     = "Leaf104"
+      from          = "104"
+      to            = "104"
       leaf_int_prof = "Leaf104_LeafProf"
     },
     "lsp101-102" = {
-      lprof_name = "Leaf101_102_LeafProf"
-      lsel_name = "Leaf101-102"
-      from = "101"
-      to = "102"
+      lprof_name    = "Leaf101_102_LeafProf"
+      lsel_name     = "Leaf101-102"
+      from          = "101"
+      to            = "102"
       leaf_int_prof = "Leaf101_102_LeafProf"
     },
     "lsp103-104" = {
-      lprof_name = "Leaf103_104_LeafProf"
-      lsel_name = "Leaf103-104"
-      from = "103"
-      to = "104"
+      lprof_name    = "Leaf103_104_LeafProf"
+      lsel_name     = "Leaf103-104"
+      from          = "103"
+      to            = "104"
       leaf_int_prof = "Leaf103_104_LeafProf"
     },
 
   }
-  
+
 }
 

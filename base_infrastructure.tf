@@ -162,80 +162,80 @@ resource "aci_rest" "set_search_domain" {
 }
 
 resource "aci_coop_policy" "coop_pol" {
-    annotation  = "orchestrator:terraform"
-    type        = "strict"
+  annotation = "orchestrator:terraform"
+  type       = "strict"
 }
 resource "aci_endpoint_ip_aging_profile" "ep_ip_aging" {
-  annotation  = "orchestrator:terraform"  
-  admin_st = "enabled"
+  annotation = "orchestrator:terraform"
+  admin_st   = "enabled"
 }
 resource "aci_fabric_node_control" "fabric_node_ctrl" {
-  name  = "default"
+  name        = "default"
   annotation  = "orchestrator:terraform"
-  control = "Dom"
+  control     = "Dom"
   feature_sel = "telemetry"
   #values are "analytics", "netflow" and "telemetry".
 
 }
 resource "aci_endpoint_controls" "ep_ctrl" {
-  annotation = "orchestrator:terraform"
-  hold_intvl = "1800"
+  annotation            = "orchestrator:terraform"
+  hold_intvl            = "1800"
   rogue_ep_detect_intvl = "60"
-  rogue_ep_detect_mult = "4"
+  rogue_ep_detect_mult  = "4"
 
-} 
+}
 resource "aci_port_tracking" "port_track" {
-    annotation = "orchestrator:terraform"
-    admin_st           = "on"
-    delay              = "120"
-    include_apic_ports = "no"
-    minlinks           = "0"
+  annotation         = "orchestrator:terraform"
+  admin_st           = "on"
+  delay              = "120"
+  include_apic_ports = "no"
+  minlinks           = "0"
 
 }
 
 resource "aci_fabric_wide_settings" "fabric_set" {
-  name = "default"
-  annotation = "orchestrator:terraform"
+  name                 = "default"
+  annotation           = "orchestrator:terraform"
   disable_ep_dampening = "yes"
   #domain_validation = "yes"
-  enable_mo_streaming = "yes"
-  enable_remote_leaf_direct = "yes"
-  enforce_subnet_check = "yes"
+  enable_mo_streaming          = "yes"
+  enable_remote_leaf_direct    = "yes"
+  enforce_subnet_check         = "yes"
   opflexp_authenticate_clients = "yes"
-  opflexp_use_ssl = "yes"
-  restrict_infra_vlan_traffic = "no"
-  unicast_xr_ep_learn_disable = "no"
-  validate_overlapping_vlans = "yes"
+  opflexp_use_ssl              = "yes"
+  restrict_infra_vlan_traffic  = "no"
+  unicast_xr_ep_learn_disable  = "no"
+  validate_overlapping_vlans   = "yes"
 }
 
 resource "aci_mcp_instance_policy" "mcp_pol" {
-    admin_st         = "enabled"
-    ctrl             = ["pdu-per-vlan"]
-    init_delay_time  = "180"
-    key              = "donotmisscable"
-    loop_detect_mult = "3"
-    loop_protect_act = "port-disable"
-    tx_freq          = "2"
-    tx_freq_msec     = "0"
+  admin_st         = "enabled"
+  ctrl             = ["pdu-per-vlan"]
+  init_delay_time  = "180"
+  key              = "donotmisscable"
+  loop_detect_mult = "3"
+  loop_protect_act = "port-disable"
+  tx_freq          = "2"
+  tx_freq_msec     = "0"
 }
 resource "aci_endpoint_loop_protection" "loop_prot" {
-    annotation = "orchestrator:terraform"
-    action            = ["port-disable"]
-    admin_st          = "disabled"
-    loop_detect_intvl = "60"
-    loop_detect_mult  = "4"
+  annotation        = "orchestrator:terraform"
+  action            = ["port-disable"]
+  admin_st          = "disabled"
+  loop_detect_intvl = "60"
+  loop_detect_mult  = "4"
 }
 resource "aci_qos_instance_policy" "qos_inst_pol" {
-    annotation = "orchestrator:terraform"
-    etrap_age_timer       = "0" 
-    etrap_bw_thresh       = "0"
-    etrap_byte_ct         = "0"
-    etrap_st              = "no"
-    fabric_flush_interval = "500"
-    fabric_flush_st       = "yes"
-    ctrl                  = "dot1p-preserve"
-    uburst_spine_queues   = "10"
-    uburst_tor_queues     = "10"
+  annotation            = "orchestrator:terraform"
+  etrap_age_timer       = "0"
+  etrap_bw_thresh       = "0"
+  etrap_byte_ct         = "0"
+  etrap_st              = "no"
+  fabric_flush_interval = "500"
+  fabric_flush_st       = "yes"
+  ctrl                  = "dot1p-preserve"
+  uburst_spine_queues   = "10"
+  uburst_tor_queues     = "10"
 }
 
 resource "aci_rest" "fabric_best_practices" {
